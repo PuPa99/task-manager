@@ -220,6 +220,28 @@ public class TaskManager {
       }
     }
 
+    public String buildReport() {
+        StringBuilder sb = new StringBuilder(250);
+        sb.append("=== ОТЧЁТ ПО ЗАДАЧАМ ===").append(NL).append(NL);
+        sb.append("Всего задач: ").append(tasks.size());
+
+        int done = 0;
+        for(Task task : tasks){
+            if(task.isCompleted()){
+                done++;
+            }
+        }
+        sb.append(NL).append("Выполнено: ").append(done);
+        sb.append(NL).append("Не выполнено: ").append(tasks.size()-done);
+        sb.append(NL).append(NL).append("Список задач:").append(NL);
+
+        for(int i = 0; i < tasks.size(); i++){
+            sb.append(i+1).append(". ").append(tasks.get(i)).append(NL);
+        }
+        sb.append(NL).append("=== КОНЕЦ ОТЧЁТА ===");
+        return sb.toString();
+    }
+
     public void saveToFile(Path path) throws IOException{
         List<String> lines = new ArrayList<>();
         for (Task task : tasks){
