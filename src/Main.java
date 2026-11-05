@@ -45,5 +45,15 @@ public class Main {
             System.out.println("Ошибка загрузки: " + e.getMessage());
         }
 
+        try{
+            com.fasterxml.jackson.databind.ObjectMapper mapper =  new com.fasterxml.jackson.databind.ObjectMapper();
+            Task jsonTask = new Task("Проверить Maven", 3 ,false);
+            String jsonString = mapper.writeValueAsString(jsonTask);
+            System.out.println("\n=== Объект в формате JSON ===");
+            System.out.println(jsonString);
+        } catch (Exception e) {
+            System.out.println("Ошибка JSON: " + e.getMessage());
+        }
+
     }
 }
